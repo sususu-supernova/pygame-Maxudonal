@@ -4,9 +4,8 @@ from button import Button
 
 pygame.init()
 
-# กำหนดขนาดหน้าจอ
-screen_w, screen_h = 1080, 750
-white = (255, 255, 255)
+screen = pygame.display.set_mode((1080,750))
+bg_image = pygame.image.load("lose_bg.png")
 
 def lose(screen):
 
@@ -14,23 +13,19 @@ def lose(screen):
 
     while True:
 
-        screen.fill("white")
-
-        lose_text = pygame.font.SysFont("Inter", 80).render("LOSE", True, "black")
-        lose_rect = lose_text.get_rect(center=(540, 297))
-        screen.blit(lose_text, lose_rect)
+        screen.blit(bg_image, (0, 0))
      
         ###########################################################################
 
         try_pic = pygame.image.load("button.png")
-        try_button_surface = pygame.transform.scale(try_pic, (360, 140))
-        try_button = Button(try_button_surface, 351, 422, "TRY AGAIN")
+        try_button_surface = pygame.transform.scale(try_pic, (340, 200))
+        try_button = Button(try_button_surface, 351, 630, "TRY AGAIN")
 
         ###########################################################################
 
         main_manu_pic = pygame.image.load("button.png")
-        main_manu_button_surface = pygame.transform.scale(main_manu_pic, (360, 140))
-        main_manu_button = Button(main_manu_button_surface, 729, 422, "MAIN MENU")
+        main_manu_button_surface = pygame.transform.scale(main_manu_pic, (340, 200))
+        main_manu_button = Button(main_manu_button_surface, 729, 630, "MAIN MENU")
 
         ###########################################################################
  

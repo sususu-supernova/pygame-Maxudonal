@@ -6,6 +6,7 @@ import final_game
 pygame.init()
 
 screen = pygame.display.set_mode((1080,750))
+bg_image = pygame.image.load("BG.png")
 
 #################################################################################
 
@@ -22,26 +23,24 @@ def game_screen() :
 
 # หน้าจอเริ่มต้นตอนเข้าเกม
 def main_menu() :
-    screen.fill("#F3C623")
-    pygame.display.set_caption("main menu")
 
-    name_text = pygame.font.SysFont("Inter", 80).render("MAIN MENU", True, "black")
-    name_rect = name_text.get_rect(center=(540, 280))
-    screen.blit(name_text, name_rect)
+    level = final_game.bestlvl
+    screen.blit(bg_image, (0, 0))
+    pygame.display.set_caption("FINAL ARROW")
 
-    best_text = pygame.font.SysFont("Inter", 24).render("BEST LEVEL", True, "black")
-    best_rect = best_text.get_rect(center=(540, 341))
+    best_text = pygame.font.SysFont("Inter", 28).render(f"BEST LEVEL: {level}", True, "black")
+    best_rect = best_text.get_rect(center=(540, 465))
     screen.blit(best_text, best_rect)
 
     # ปุ่ม START
     start_pic = pygame.image.load("button.png")
-    start_button_surface = pygame.transform.scale(start_pic, (300, 140))
-    start_button = Button(start_button_surface, 381, 440, "START")
+    start_button_surface = pygame.transform.scale(start_pic, (280, 200))
+    start_button = Button(start_button_surface, 381, 550, "START")
 
     # ปุ่ม QUIT
     quit_pic = pygame.image.load("button.png")
-    quit_button_surface = pygame.transform.scale(quit_pic, (300, 140))
-    quit_button = Button(quit_button_surface, 699, 440, "QUIT")
+    quit_button_surface = pygame.transform.scale(quit_pic, (280, 200))
+    quit_button = Button(quit_button_surface, 699, 550, "QUIT")
 
     # ตรวจสอบการคลิก
     for event in pygame.event.get():
@@ -51,7 +50,6 @@ def main_menu() :
 
         if event.type == pygame.MOUSEBUTTONDOWN:
 
-            # action = start_button.checkForInput(pygame.mouse.get_pos()) # pygame.mouse.get_pos() จะคืนค่าเป็นทูตที่มีสองค่า (x, y) ซึ่งเป็นพิกัดของตำแหน่งปัจจุบันของเมาส์
             if start_button.checkForInput(pygame.mouse.get_pos()) == "game":
                 return "game"
             
@@ -69,7 +67,6 @@ def main_menu() :
 
 #################################################################################
 
-# ฟังก์ชันหน้าจอหลัก
 def main():
 
     in_game = False  # กำหนดสถานะเกมเริ่มต้นว่าอยู่ในหน้าหลัก
@@ -84,24 +81,3 @@ if __name__ == "__main__":
     main()
 
 #################################################################################
-
-    '''screen.fill("Black")
-    pygame.display.set_caption("game")
-
-    play_text = pygame.font.SysFont("Inter", 45).render("this is the play screen", True, "white")
-    play_rect = play_text.get_rect(center=(540, 250))
-    screen.blit(play_text, play_rect)
-
-    # ปุ่ม QUIT สำหรับกลับไปหน้าหลัก
-    quit_pic = pygame.image.load("test_button_2.png")
-    quit_button_surface = pygame.transform.scale(quit_pic, (369,210)) # กำหนดขนาดกรอบของตัวปุ่น
-    quit_button = Button(quit_button_surface,540,400,"QUIT")
-
-    for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN :
-            quit_button.checkForInput(pygame.mouse.get_pos())
-
-    quit_button.changeColor(pygame.mouse.get_pos()) 
-    quit_button.update() 
-
-    pygame.display.update()'''

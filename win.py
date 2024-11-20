@@ -4,9 +4,8 @@ from button import Button
 
 pygame.init()
 
-# กำหนดขนาดหน้าจอ
-screen_w, screen_h = 1080, 750
-white = (255, 255, 255)
+screen = pygame.display.set_mode((1080,750))
+bg_image = pygame.image.load("win_bg.png")
 
 def win(screen):
 
@@ -14,23 +13,19 @@ def win(screen):
 
     while True : 
 
-        screen.fill("white")  # เติมหน้าจอเป็นสีดำ
-
-        win_text = pygame.font.SysFont("Inter", 80).render("WIN", True, "black")
-        win_rect = win_text.get_rect(center=(540, 297))
-        screen.blit(win_text, win_rect)
-
+        screen.blit(bg_image, (0, 0))
+        
         ###########################################################################
 
         next_pic = pygame.image.load("button.png")
-        next_button_surface = pygame.transform.scale(next_pic, (360, 140))
-        next_button = Button(next_button_surface, 351, 422, "NEXT LEVEL")
+        next_button_surface = pygame.transform.scale(next_pic, (340, 200))
+        next_button = Button(next_button_surface, 351, 630, "NEXT LEVEL")
 
         ###########################################################################
 
         main_manu_pic = pygame.image.load("button.png")
-        main_manu_button_surface = pygame.transform.scale(main_manu_pic, (360, 140))
-        main_manu_button = Button(main_manu_button_surface, 729, 422, "MAIN MENU")
+        main_manu_button_surface = pygame.transform.scale(main_manu_pic, (340, 200))
+        main_manu_button = Button(main_manu_button_surface, 729, 630, "MAIN MENU")
 
         ###########################################################################
 
